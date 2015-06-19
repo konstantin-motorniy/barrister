@@ -1,0 +1,18 @@
+'use strict';
+
+nameApp.controller('ReportAuditsCtrl', ['$scope', '$state', '$http', function($scope, $state, $http) {
+	$scope.viewUrl = $state.current.viewUrl;
+
+	$scope.sortType     = 'matter'; // set the default sort type
+	$scope.sortReverse  = false;  // set the default sort order
+	$scope.searchFish   = '';     // set the default search/filter term
+
+	// get audits
+	$http({
+		method: 'GET',
+		url: '/api/v1/audits/'
+	}).then(function (data) {
+		// create the list of audits
+		$scope.audits = data.data;
+	});
+}]);

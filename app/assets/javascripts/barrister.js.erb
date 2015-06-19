@@ -1,0 +1,29 @@
+'use strict';
+
+var nameApp = angular.module('barrister', ['ui.router']);
+
+nameApp.config(function ($stateProvider, $urlRouterProvider) {
+	// For any unmatched url, redirect to /state1
+	$urlRouterProvider.otherwise("/audits/report");
+
+	// Now set up the states
+	$stateProvider
+		.state('audits_report', {
+			url: '/audits/report',
+			templateUrl: '<%= asset_path('layouts/main.html') %>',
+			controller: 'ReportAuditsCtrl',
+			viewUrl: '<%= asset_path('barrister/audits/report.html') %>'
+		})
+		.state('master_file', {
+			url: '/master_file',
+			templateUrl: '<%= asset_path('layouts/main.html') %>',
+			controller: 'MasterFileCtrl',
+			viewUrl: '<%= asset_path('barrister/master_file.html') %>'
+		})
+		.state('agreements', {
+			url: '/agreements',
+			templateUrl: '<%= asset_path('layouts/main.html') %>',
+			controller: 'AgreementsCtrl',
+			viewUrl: '<%= asset_path('barrister/agreements.html') %>'
+		});
+});

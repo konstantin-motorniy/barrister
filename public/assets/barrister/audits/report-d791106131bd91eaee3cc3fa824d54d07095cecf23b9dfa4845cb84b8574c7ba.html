@@ -1,0 +1,69 @@
+<div class="container">
+    <form>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>
+                <a ng-click="sortType = 'matter'; sortReverse = !sortReverse">
+                    Matter No
+                    <span ng-show="sortType == 'matter' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'matter' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a ng-click="sortType='barrister'; sortReverse=!sortReverse">
+                    Barrister
+                    <span ng-show="sortType == 'barrister' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'barrister' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a ng-click="sortType='matter_name'; sortReverse=!sortReverse">
+                    Matter Name
+                    <span ng-show="sortType == 'matter_name' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'matter_name' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a ng-click="sortType='user'; sortReverse=!sortReverse">
+                    User
+                    <span ng-show="sortType == 'user' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'user' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a ng-click="sortType='updated_at'; sortReverse=!sortReverse">
+                    Last Updated
+                    <span ng-show="sortType == 'updated_at' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'updated_at' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+            <td>
+                <a ng-click="sortType='amount'; sortReverse=!sortReverse">
+                    Amount
+                    <span ng-show="sortType == 'amount' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'amount' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in audits | orderBy:sortType:sortReverse | filter:searchFish">
+            <td>{{ item.matter }}</td>
+            <td>{{ item.barrister }}</td>
+            <td>{{ item.matter_name }}</td>
+            <td>{{ item.user }}</td>
+            <td>{{ item.updated_at }}</td>
+            <td>{{ item.amount }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
